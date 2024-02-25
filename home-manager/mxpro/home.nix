@@ -2,7 +2,7 @@
 { pkgs, config, ... }:
 let
 	configDir = "${config.home.homeDirectory}/.system-configuration";
-	username = "user";
+	username = "lasse";
 	machine = "mxpro";
 in {
 	kirk = {
