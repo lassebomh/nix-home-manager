@@ -24,6 +24,10 @@ in {
 		settings.experimental-features = [ "nix-command" "flakes" ];
 	};
 
+	programs.zsh = {
+		enable = true;
+	}
+
 	programs.bash = {
 		enable = true;
 		profileExtra = ''
