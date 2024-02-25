@@ -25,6 +25,7 @@ in {
 	};
 
 	kirk.foot.enable = true;
+	kirk.fonts.enable = true;
 
 	programs.zsh = {
 		enable = true;
