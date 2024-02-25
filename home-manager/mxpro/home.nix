@@ -1,41 +1,12 @@
 # My home manager config
 { pkgs, config, ... }:
 let
+	configDir = "${config.home.homeDirectory}/.system-configuration";
 	username = "user";
-	machine = "deck";
-	dataDir = "/data";
-	configDir = "${dataDir}/.system-configuration";
-	secretDir = "${dataDir}/.secret";
+	machine = "mxpro";
 in {
 	kirk = {
-		terminalTools.enable = true;
-		foot.enable = true;
-		fzf.enable = true;
-		git = {
-			enable = true;
-			userEmail = "mail@rasmuskirk.com";
-			userName = "rasmus-kirk";
-		};
-		helix.enable = true;
-		homeManagerScripts = { 
-			enable = true; 
-			configDir = configDir; 
-			machine = machine; 
-		};
-		jiten.enable = false;
-		joshuto.enable = true;
-		kakoune.enable = true;
-		ssh = { 
-			enable = true; 
-			identityPath = "${secretDir}/deck/ssh/id_ed25519";
-		};
-		userDirs = { 
-			enable = true; 
-			autoSortDownloads = true; 
-		};
-		zathura.enable = true;
-		zsh.enable = true;
-		fonts.enable = true;
+		homeManagerScripts = { enable = true; configDir = configDir; machine = machine; };
 	};
 
 	home.username = username;
@@ -58,6 +29,8 @@ in {
 		profileExtra = ''
 			# Fix programs not showing up
 			export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
+
+			export NIX_PATH=''${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
 		'';
 
 		initExtra = "exec zsh";
@@ -65,21 +38,30 @@ in {
 
 	home.packages = with pkgs; [
 		# Misc
-		freetube
-		jellyfin
-		mpv
-	
+		gnome.gnome-tweaks
+		thunderbird
+
 		# Browsers
-		librewolf
+		chromium
+
+		# Media
+		qbittorrent
+		#mpv
 
 		# Chat
+		slack
 		signal-desktop
 
 		# Fonts
 		(nerdfonts.override { fonts = [ "FiraCode" ]; })
 		fira-code
 
+		# Document handling
+		texlive.combined.scheme-full
+		pandoc
+		inotify-tools
+
 		# Misc Terminal Tools
-		wl-clipboard
+		yt-dlp
 	];
 }
