@@ -96,7 +96,27 @@ in {
 		initExtra = "exec zsh";
 	};
 
+	fonts.fontconfig.enable = true;
+
+	# Set fonts
+	xdg.configFile = {
+		"fontconfig/fonts.conf".text = ''
+		<alias>
+			<family>monospace</family>
+			<prefer>
+				<family>FiraCode Nerd Font</family>
+				<family>Inconsolata</family>
+				<family>DejaVu Sans Mono</family>
+			</prefer>
+		</alias>
+		'';
+	};
+
 	home.packages = with pkgs; [
+		# Fonts
+		(nerdfonts.override {fonts = ["FiraCode"];})
+		fira-code
+
 		# Misc
 		gnome.gnome-tweaks
 		thunderbird
