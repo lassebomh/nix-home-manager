@@ -104,9 +104,6 @@ in {
 		gnome.gnome-tweaks
 		thunderbird
 
-		# Development
-		python-modules.virtualenv
-
 		# Browsers
 		chromium
 
