@@ -7,9 +7,11 @@ let
 in {
 	kirk = {
 		homeManagerScripts = { enable = true; configDir = configDir; machine = machine; };
-		foot.enable = true;
 		fonts.enable = true;
-		foot.alpha = 1.0;
+		foot = {
+			enable = true;
+			alpha = 1.0;
+		};
 	};
 
 	home.username = username;
@@ -102,6 +104,7 @@ in {
 	home.packages = with pkgs; [
 		# Dev
 		virtualenv
+		python310Packages.virtualenv
 
 		# Misc
 		gnome.gnome-tweaks
