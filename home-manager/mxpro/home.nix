@@ -101,7 +101,7 @@ in {
 
 	home.packages = with pkgs; [
 		# Dev
-		python3.10-virtualenv
+		virtualenv
 
 		# Misc
 		gnome.gnome-tweaks
