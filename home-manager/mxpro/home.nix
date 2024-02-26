@@ -114,6 +114,7 @@ in {
 		# Chat
 		slack
 		signal-desktop
+		discord
 
 		# Fonts
 		(nerdfonts.override { fonts = [ "FiraCode" ]; })

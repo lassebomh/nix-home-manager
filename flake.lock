@@ -173,11 +173,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1708952587,
-        "narHash": "sha256-R4+C3zQLTK4DK2zBNPPWQRKlrX6JbhKZFUntQ9gkOkw=",
+        "lastModified": 1708956963,
+        "narHash": "sha256-OWoRtgrZBgpQMLxyMcGOAeRumeA9ilNfnn3hCDGz3KY=",
         "owner": "rasmus-kirk",
         "repo": "nix-modules",
-        "rev": "04db7ebe480c0e29a655de7bf58e56a64c1ecb13",
+        "rev": "8f572bf20542b40a9228cef772f63b4057d0ff76",
         "type": "github"
       },
       "original": {
