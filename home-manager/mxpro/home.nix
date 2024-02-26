@@ -100,6 +100,9 @@ in {
 	};
 
 	home.packages = with pkgs; [
+		# Dev
+		python3.10-virtualenv
+
 		# Misc
 		gnome.gnome-tweaks
 		thunderbird
