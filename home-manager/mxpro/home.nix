@@ -7,6 +7,9 @@ let
 in {
 	kirk = {
 		homeManagerScripts = { enable = true; configDir = configDir; machine = machine; };
+		foot.enable = true;
+		fonts.enable = true;
+		foot.alpha = 1.0;
 	};
 
 	home.username = username;
@@ -23,9 +26,6 @@ in {
 		package = pkgs.nix;
 		settings.experimental-features = [ "nix-command" "flakes" ];
 	};
-
-	kirk.foot.enable = true;
-	kirk.fonts.enable = true;
 
 	programs.zsh = {
 		enable = true;
