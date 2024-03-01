@@ -32,11 +32,14 @@ in {
 	programs.zsh = {
 		enable = true;
 
+		localVariables = { LD_LIBRARY = "${pkgs.zlib}/lib:$LD_LIBRARY_PATH"; };
+		
 		enableAutosuggestions = true;
 		syntaxHighlighting.enable = true;
 		oh-my-zsh.enable = true;
 
 		profileExtra = ''
+
 		# Enable gnome discovery of nix installed programs
 		export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
 
@@ -101,37 +104,145 @@ in {
 		initExtra = "exec zsh";
 	};
 
+	programs.vscode = {
+		enable = true;
+		extensions = with pkgs.vscode-extensions; [
+			bbenoist.nix
+			nonylene.dark-molokai-theme
+			christian-kohler.path-intellisense
+			ms-toolsai.jupyter
+			ms-python.python
+			ritwickdey.liveserver
+			svelte.svelte-vscode
+			astro-build.astro-vscode
+			golang.go
+		];
+		userSettings = {
+			"workbench.colorTheme" = "Dark (Molokai)";
+			"extensions.ignoreRecommendations" = true;
+			"jupyter.askForKernelRestart" = false;
+			"editor.cursorSurroundingLines" = 6;
+			"editor.cursorSurroundingLinesStyle" = "default";
+			"editor.fontFamily" = "Fira Code";
+			"editor.fontLigatures" = true;
+			"editor.semanticHighlighting.enabled" = true;
+			"editor.minimap.showSlider" = "always";
+			"editor.stickyTabStops" = true;
+			"explorer.confirmDragAndDrop" = false;
+			"explorer.autoReveal" = false;
+			"explorer.confirmDelete" = false;
+			"task.allowAutomaticTasks" = "on";
+			"notebook.output.wordWrap" = true;
+			"notebook.lineNumbers" = "on";
+			"git.ignoreMissingGitWarning" = true;
+			"git.openRepositoryInParentFolders" = "never";
+			"security.workspace.trust.untrustedFiles" = "open";
+			"security.workspace.trust.enabled" = false;
+			"svelte.enable-ts-plugin" = true;
+			"liveServer.settings.donotVerifyTags" = true;
+			"liveServer.settings.donotShowInfoMsg" = true;
+		};
+		keybindings = [
+			{
+				key = "ctrl+up";
+				command = "cursorMove";
+				args = {
+					to = "up";
+					by = "line";
+					value = 5;
+				};
+			}
+			{
+				key = "ctrl+shift+up";
+				command = "cursorMove";
+				args = {
+					to = "up";
+					by = "line";
+					value = 5;
+					select = true;
+				};
+			}
+			{
+				key = "ctrl+down";
+				command = "cursorMove";
+				args = {
+					to = "down";
+					by = "line";
+					value = 5;
+				};
+			}
+			{
+				key = "ctrl+shift+down";
+				command = "cursorMove";
+				args = {
+					to = "down";
+					by = "line";
+					value = 5;
+					select = true;
+				};
+			}
+			{
+				key = "alt+left";
+				command = "cursorHome";
+				when = "editorTextFocus";
+			}
+			{
+				key = "alt+right";
+				command = "cursorEnd";
+				when = "editorTextFocus";
+			}
+			{
+				key = "shift+alt+right";
+				command = "cursorEndSelect";
+				when = "editorTextFocus";
+			}
+			{
+				key = "shift+alt+left";
+				command = "cursorHomeSelect";
+				when = "editorTextFocus";
+			}
+			{
+				key = "ctrl+tab";
+				command = "workbench.action.nextEditor";
+			}
+			{
+				key = "ctrl+shift+tab";
+				command = "workbench.action.previousEditor";
+			}
+			{
+				key = "ctrl+;";
+				command = "python-brackets.nest";
+			}
+		];
+	};
+
 	home.packages = with pkgs; [
 		# Dev
-		virtualenv
+		python310
 		python310Packages.virtualenv
+		nodejs_18
+		github-desktop
 
-		# Misc
-		gnome.gnome-tweaks
+		# Tools
+		yt-dlp
+		pandoc
+
+		# General
 		thunderbird
-
-		# Browsers
 		chromium
-
-		# Media
 		qbittorrent
-		#mpv
+		mpv
 
 		# Chat
 		slack
 		signal-desktop
 		discord
 
-		# Fonts
+		# Misc
 		(nerdfonts.override { fonts = [ "FiraCode" ]; })
 		fira-code
-
-		# Document handling
+		gnome.gnome-tweaks
 		texlive.combined.scheme-full
-		pandoc
 		inotify-tools
-
-		# Misc Terminal Tools
-		yt-dlp
 	];
 }
