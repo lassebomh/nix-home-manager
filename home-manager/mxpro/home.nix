@@ -20,7 +20,10 @@ in {
 	home.stateVersion = "22.11";
 
 	# Let Home Manager install and manage itself.
-	programs.home-manager.enable = true;
+	programs.home-manager = {
+		enable = true;
+	};
+	
 	
 	targets.genericLinux.enable = true;
 
@@ -242,6 +245,10 @@ in {
 		(nerdfonts.override { fonts = [ "FiraCode" ]; })
 		fira-code
 		gnome.gnome-tweaks
+		gnomeExtensions.just-perfection
+		gnomeExtensions.dash-to-panel
+		# kdePackages.plasma-desktop
+
 		texlive.combined.scheme-full
 		inotify-tools
 	];
